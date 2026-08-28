@@ -1,59 +1,43 @@
-# Feed Later Bridge — build handoff
+# Feed Later Bridge — verification handoff
 
-Work order: `feed-later-bridge-build-1`
-Completed: 2026-08-28
+**FAIL** for work order `feed-later-bridge-verify-2`.
 
-## What shipped
+- Tested candidate: `581daef54197ca0949eb16698521159d4fda7028`
+- Tested deployment: <https://feed-later-bridge.sociobot.in>
+- Verification date: 2026-08-28 UTC
+- Full evidence: [verification-2.md](verification-2.md)
 
-- A WXT + TypeScript Manifest V3 extension with a compact toolbar popup and full-tab options dashboard.
-- User-initiated RSS 2.0, RDF-style RSS, and Atom imports from `http`/`https` URLs.
-- Per-origin optional host permission requests, credential-free fetches, blocked redirects, 15-second timeout, 5 MB response limit, and 1,000-entry import limit.
-- Inert text extraction from feed markup, unsafe protocol rejection, common tracking-parameter removal, canonical URL deduplication, and preservation of local notes/status across re-imports.
-- A local queue with search, newest/oldest sorting, Queue/Finished/All filters, completion toggles, persistent notes, reversible removal, empty/loading/error/offline states, and live announcements.
-- Local Markdown, OPML, and JSON downloads containing the full queue.
-- A responsive product site with manual Chrome installation instructions and the packaged extension at `dist/site/downloads/feed-later-bridge-chrome.zip`.
-- Privacy and terms pages, a restrictive static-host CSP/header file, no analytics, no third-party runtime assets, and no hosted user-data component.
-- A product-specific luminous-glass visual system plus an original generated bridge landscape. Prompt, generator, review, and licensing provenance are recorded in `.factory/design.md` and `assets/src/`.
+## Result
 
-## How to run
+The clean install, TypeScript check, 7 unit tests, exact production build, 8 passing Playwright scenarios, production dependency audit, live axe checks, and mobile Lighthouse all pass. Lighthouse scored 100/100/100/100 with 1.1 s LCP, 10 ms TBT, 0 CLS, and 21 KiB transferred.
+
+The release nevertheless fails acceptance:
+
+1. **High:** a valid standard RSS 1.0/RDF feed with one item silently imports zero and reports `Up to date. 0 items are already here.`
+2. **Medium:** production serves `_headers` as a file instead of applying it. Live responses lack the candidate’s CSP and Permissions-Policy, and hashed assets receive only `max-age=30` rather than immutable caching.
+3. **Medium:** several 390 px targets are below the required 44×44 px, including the extension’s 32×32 completion control.
+4. **Medium:** the public site stays dark under a light color-scheme preference despite `.factory/design.md` promising a light treatment.
+5. **Low:** redirects surface only `Failed to fetch` and all redirects are blocked, not only the cross-origin redirects described by the privacy copy.
+6. **Low:** unknown live routes return the home page with HTTP 200.
+
+## Verified working
+
+- RSS 2.0 and Atom import, canonical deduplication, inert markup, unsafe-link rejection, exact-origin access, credential omission, 5 MB/1,000-item validation, annotations, finish/filter/search, persistence, remove/Undo, and Markdown/OPML/JSON export.
+- Empty, malformed-feed, HTTP error, boundary, and offline states.
+- Keyboard-only core workflow, visible focus, reduced motion, desktop and 390 px layouts, popup/options navigation, and zero axe serious/critical findings.
+- No successful-flow console/page errors, analytics, third-party runtime assets, cookies, website local storage, or unexpected outbound requests.
+- The live HTML/assets and every file inside the downloadable extension match the candidate build. The deployment is current; the missing response policy is a live hosting/configuration defect, not a stale-artifact result.
+
+## Re-run
 
 ```bash
 npm ci
-npm run dev             # extension development
-npm run dev:site        # site development
-npm run build           # extension + zip + dist/site
+npm test
+npx tsc --noEmit
+npm run build
+npm run check
+npm run test:e2e
+npm audit --omit=dev
 ```
 
-Load `.output/chrome-mv3` from `chrome://extensions` for a local browser smoke test. The static deployment root is exactly `dist/site/` and contains `index.html`.
-
-## Verification
-
-- `npm run check` — passed (strict TypeScript, 7 Vitest tests, production extension and site build).
-- `npm run test:e2e` — passed: 8 passed, 1 intentional desktop skip for the mobile-only duplication; Chromium 1.58.2.
-- Extension browser test — passed the real import → deduplicate → annotate → finish → reload persistence → re-import → JSON download path against a served Atom feed.
-- Axe 4.10 — no serious or critical violations on the populated extension dashboard or on desktop/mobile landing pages.
-- 390×844 mobile check — primary action and legal links visible; document width 390px with no horizontal overflow.
-- Browser console capture — no errors on the landing page during the e2e run.
-- `npm audit --omit=dev` — 0 production vulnerabilities. Remaining audit findings are in WXT’s development-only Firefox runner dependency chain and do not ship in the extension or site.
-- Extension bundle — 45.2 KB total; largest JS chunk 17.19 KB; largest CSS file 11.1 KB.
-- Static first-load payload — 1.04 KB JS, 12.15 KB CSS, 14.3 KB mobile hero WebP (34.0 KB desktop WebP); total Lighthouse transfer 23,094 bytes.
-
-Mobile Lighthouse 12.8.2 against the local production build:
-
-| Category / metric | Result |
-|---|---:|
-| Performance | 100 |
-| Accessibility | 100 |
-| Best practices | 100 |
-| SEO | 100 |
-| LCP | 1.21 s |
-| Total blocking time | 0 ms |
-| CLS | 0 |
-| INP | Not measured in a lab navigation; TBT is the lab responsiveness proxy |
-
-## Known gaps and next steps
-
-- The package is Chrome-compatible and distributed as an unsigned zip; Chrome Web Store signing and Firefox packaging remain release-channel work outside this repository.
-- Import is intentionally manual in v1. A future opt-in alarm can refresh a feed without opening the dashboard, but should preserve the exact-origin permission model and expose a clear cadence control.
-- Feeds requiring cookies, embedded basic-auth credentials, or cross-origin redirects are intentionally refused. Tokenized feed URLs that respond directly work and remain only in local extension storage.
-- Article bodies are not scraped or cached. This is the explicit boundary between a handoff bridge and another read-later silo.
+After fixes, repeat RSS 1.0 import through the packaged extension and inspect actual live response headers before changing the verdict.
