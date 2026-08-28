@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Turn an RSS or Atom saved-items feed into a private, finishable, exportable reading queue. No account and no new silo." />
+    <meta name="theme-color" content="#07111d" />
+    <meta property="og:title" content="Feed Later Bridge" />
+    <meta property="og:description" content="Your saved feed in. An open queue out." />
+    <title>Feed Later Bridge — your saved feed, without another silo</title>
+    <link rel="icon" href="/assets/bridge.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Feed Later Bridge home"><img src="/assets/bridge.svg" width="38" height="38" alt="" /><span><b>Feed Later</b><small>Bridge</small></span></a>
+      <nav aria-label="Primary navigation"><a href="#how">How it works</a><a href="#formats">Open formats</a><a class="nav-action" href="/downloads/feed-later-bridge-chrome.zip" download>Download</a></nav>
+    </header>
+    <main id="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> A private relay for saved reading</p>
+          <h1>Your saved feed,<br /><em>without another silo.</em></h1>
+          <p class="lede">Bring an RSS or Atom saved-items feed into one calm, local queue. Finish articles, leave notes, and take everything back out in open formats.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="/downloads/feed-later-bridge-chrome.zip" download>Download for Chrome <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#install">See install steps <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="trust-list" aria-label="Product guarantees">
+            <li>No account</li><li>No tracking</li><li>Local by default</li>
+          </ul>
+        </div>
+        <figure class="hero-visual">
+          <div class="figure-label source-label"><span></span> Saved feed</div>
+          <picture>
+            <source media="(max-width: 700px)" srcset="/assets/feed-bridge-hero-768.webp" />
+            <img src="/assets/feed-bridge-hero.webp" width="1280" height="853" alt="A luminous glass bridge carrying article tiles from a feed beacon to an orderly queue" fetchpriority="high" decoding="async" />
+          </picture>
+          <div class="figure-label queue-label"><span></span> Your queue</div>
+          <figcaption>One transparent route in. Three open routes out.</figcaption>
+        </figure>
+      </section>
+
+      <section class="proof-strip" aria-label="Product summary">
+        <div><strong>RSS + Atom</strong><span>Reads the open feed you already have</span></div>
+        <div><strong>On-device</strong><span>Stores links, status, and notes locally</span></div>
+        <div><strong>OPML · MD · JSON</strong><span>Exports without a proprietary format</span></div>
+      </section>
+
+      <section class="workflow" id="how">
+        <div class="section-heading"><p class="eyebrow">A bridge, not a destination</p><h2>A finite route through your reading.</h2><p>Feed Later Bridge handles the handoff. The article still belongs to its publisher, and the queue still belongs to you.</p></div>
+        <ol class="steps">
+          <li><span class="step-number">01</span><div class="step-line" aria-hidden="true"></div><h3>Connect the feed</h3><p>Paste the private or public RSS/Atom URL your reader gives you. The extension asks only for that origin.</p></li>
+          <li><span class="step-number">02</span><div class="step-line" aria-hidden="true"></div><h3>Work the queue</h3><p>Duplicate links merge automatically. Search, annotate, and mark items finished without creating an account.</p></li>
+          <li><span class="step-number">03</span><div class="step-line" aria-hidden="true"></div><h3>Take it back out</h3><p>Export the complete queue as readable Markdown, interoperable OPML, or structured JSON at any time.</p></li>
+        </ol>
+      </section>
+
+      <section class="queue-demo" aria-labelledby="queue-demo-title">
+        <div class="demo-chrome">
+          <div class="demo-top"><span></span><span></span><span></span><small>LOCAL QUEUE / 3 WAITING</small></div>
+          <div class="demo-body">
+            <div class="demo-source"><p class="eyebrow">01 / Source</p><strong>Saved in Miniflux</strong><small>Imported just now</small><button type="button" disabled>Up to date <span>✓</span></button></div>
+            <div class="demo-list"><div class="demo-list-head"><div><p class="eyebrow">02 / Queue</p><h2 id="queue-demo-title">A small, finishable list.</h2></div><b>03</b></div>
+              <article><span class="check">✓</span><div><small>THE MARGINALIAN · AUG 24</small><h3>How attention becomes a form of care</h3><p>Note: revisit the passage on deliberate noticing.</p></div></article>
+              <article><span class="check empty"></span><div><small>LOW-TECH MAGAZINE · AUG 22</small><h3>A solar-powered website for a slower web</h3></div></article>
+              <article><span class="check empty"></span><div><small>PERSONAL FEED · AUG 19</small><h3>Making links durable across tools</h3></div></article>
+            </div>
+          </div>
+        </div>
+        <p class="demo-caption">The extension stays compact on purpose: source, queue, export. No recommendations and no endless scroll.</p>
+      </section>
+
+      <section class="formats" id="formats">
+        <div><p class="eyebrow">Open on both sides</p><h2>Nothing is trapped here.</h2></div>
+        <div class="format-grid">
+          <article><span>.md</span><h3>Markdown</h3><p>A human-readable checklist with titles, links, dates, sources, and notes.</p></article>
+          <article><span>.opml</span><h3>OPML</h3><p>A portable outline that other readers and link tools can understand.</p></article>
+          <article><span>{ }</span><h3>JSON</h3><p>A complete structured backup for scripts, migration, or safekeeping.</p></article>
+        </div>
+      </section>
+
+      <section class="install" id="install">
+        <div><p class="eyebrow">Install in two minutes</p><h2>Keep the bridge in your browser.</h2><p>Version 1 ships as a reviewable Chrome-compatible package. Firefox packaging is a planned next step.</p></div>
+        <ol><li><span>1</span><p><a href="/downloads/feed-later-bridge-chrome.zip" download>Download the extension zip</a> and unpack it.</p></li><li><span>2</span><p>Open <code>chrome://extensions</code> and switch on Developer mode.</p></li><li><span>3</span><p>Choose “Load unpacked” and select the extracted folder.</p></li></ol>
+        <a class="button primary" href="/downloads/feed-later-bridge-chrome.zip" download>Download Feed Later Bridge <span aria-hidden="true">↓</span></a>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <a class="brand" href="/"><img src="/assets/bridge.svg" width="34" height="34" alt="" /><span><b>Feed Later</b><small>Bridge</small></span></a>
+      <p>Local-first, open-format software for people who read feeds.</p>
+      <nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-feed-later-bridge" rel="noopener noreferrer">Source</a></nav>
+      <small>Original generated landscape · No analytics or third-party runtime assets</small>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
