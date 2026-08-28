@@ -1,0 +1,9 @@
+{
+  "slug": "feed-later-bridge",
+  "title": "Feed Later Bridge",
+  "artifact_class": "browser-extension",
+  "user": "RSS readers who mark articles for later but do not want a separate proprietary read-later silo or a manual copy/paste routine.",
+  "smallest_useful_product": "A local-first web/extension pair that imports a user-designated RSS/Atom saved-items feed, deduplicates entries, lets the user mark/annotate a compact queue, and exports OPML/Markdown/JSON.",
+  "monetization": "free",
+  "constraints": "Fetch feeds only from user-provided URLs; protect against feed HTML/script injection and SSRF in any companion service; retain only local reading metadata by default."
+}
