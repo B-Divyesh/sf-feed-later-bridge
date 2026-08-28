@@ -4,3 +4,12 @@ dist/
 *.log
 graphify-out/
 .DS_Store
+node_modules/
+.wxt/
+.output/
+dist/
+site/public/downloads/
+coverage/
+playwright-report/
+test-results/
+.DS_Store

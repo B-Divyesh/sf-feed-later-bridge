@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Feed Later Bridge">
+  <rect width="128" height="128" rx="28" fill="#07111d"/>
+  <path d="M22 78c21 0 22-28 42-28s21 28 42 28" fill="none" stroke="#5fe1d0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M24 43v43M104 43v43" stroke="#b5bed2" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="24" cy="40" r="9" fill="#ffca69"/>
+  <rect x="95" y="31" width="18" height="18" rx="5" fill="#f5f7ff"/>
+</svg>

@@ -1,0 +1,29 @@
+{
+  "name": "feed-later-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "postinstall": "wxt prepare",
+    "dev:site": "vite --config site/vite.config.ts",
+    "build:extension": "wxt build",
+    "build:site": "vite build --config site/vite.config.ts",
+    "package:extension": "node scripts/package-extension.mjs",
+    "build": "npm run build:extension && npm run package:extension && npm run build:site",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "tsc --noEmit && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "1.58.2",
+    "@types/chrome": "^0.0.326",
+    "jsdom": "^26.1.0",
+    "playwright": "1.58.2",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.4",
+    "wxt": "^0.20.6"
+  }
+}
