@@ -8,7 +8,6 @@ export default defineConfig({
     permissions: ['storage'],
     optional_host_permissions: ['http://*/*', 'https://*/*'],
     action: { default_title: 'Feed Later Bridge' },
-    options_ui: { page: 'options.html', open_in_tab: true },
     icons: {
       16: 'icon/icon-16.png',
       32: 'icon/icon-32.png',

@@ -7,5 +7,5 @@
     "noUncheckedIndexedAccess": true,
     "useDefineForClassFields": true
   },
-  "include": ["src", "entrypoints", "site", "tests", "wxt.config.ts"]
+  "include": [".wxt/wxt.d.ts", "src", "entrypoints", "site", "tests", "wxt.config.ts"]
 }

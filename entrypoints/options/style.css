@@ -122,6 +122,7 @@ footer { width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 24px 0 
   :root { --ground: #f2f7f8; --ground-soft: #e7f0f2; --surface: #fff; --glass: rgb(255 255 255 / 82%); --glass-heavy: rgb(255 255 255 / 96%); --ink: #142235; --muted: #50627a; --edge: #a9bac7; --edge-soft: rgb(20 34 53 / 14%); --current: #087c73; --current-ink: #fff; --signal: #805400; --success: #17733a; --danger: #b3272d; }
   body { background: radial-gradient(circle at 75% 18%, rgb(8 124 115 / 10%), transparent 35%), linear-gradient(135deg, var(--ground), var(--ground-soft)); }
   input, select, textarea { background-color: rgb(255 255 255 / 88%); }
+  .primary:hover { background: #06665f; }
   .filters button:hover, .filters button[aria-pressed="true"], .item-actions button:hover { background: rgb(20 34 53 / 8%); }
   input::placeholder, textarea::placeholder { color: #64758a; }
 }

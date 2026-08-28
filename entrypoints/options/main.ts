@@ -17,7 +17,7 @@ let undoTimer: number | undefined;
 
 app.innerHTML = `
   <header class="topbar">
-    <a class="brand" href="#main" aria-label="Feed Later Bridge home">
+    <a class="brand" href="#main" aria-label="Feed Later Bridge">
       <img src="/icon/bridge.svg" width="36" height="36" alt="" />
       <span><strong>Feed Later</strong><small>Bridge</small></span>
     </a>
