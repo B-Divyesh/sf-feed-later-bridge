@@ -1,12 +1,14 @@
 # Import saved feeds into a local queue — repair handoff
 
-**Release candidate: PASS**
+**Latest independent verification: FAIL**
 
 - Live URL: <https://feed-later-bridge.sociobot.in>
 - Deployed implementation SHA: `54f5b6f5aa3ae28adac40b5e6bf2b920a193b363`
 - Prior documentation-only review SHA: `247dcc5dbbc39e01275659cc6d122e98cffa0092`
 - This handoff is a later documentation-only record; it does not require a new product image.
 - Product version: `1.1.0`
+
+Verification 3 reviewed the live implementation independently against documentation SHA `7afe2614148c6a2c4e98a9bc7ef1d8f7cf322704`. All 11 claim commands, 25 browser tests with one expected skip, build/check, production audit, live accessibility checks, and Lighthouse 100/100/100/100 passed. One low-severity live defect prevents acceptance: `#sample-queue-title` is marked `sr-only`, but the site stylesheet has no `.sr-only` rule, so the demo displays a duplicate 64 px desktop / 40 px phone heading. See `.factory/verification-3.md`.
 
 ## What changed
 
@@ -64,4 +66,5 @@ The standalone `npx @axe-core/cli` could not start Chrome in this worker image. 
 
 ## Known gaps and next steps
 
-No product defects are known. This remains a local-first extension: users need a direct RSS, Atom, or RSS 1.0 saved-items URL from their reader. There is deliberately no hosted sync service, account system, article scraper, or external feed-provider integration.
+- Add the missing site `.sr-only` utility so the demo’s accessible queue heading is visually hidden, then add a computed-style browser regression check.
+- This remains a local-first extension: users need a direct RSS, Atom, or RSS 1.0 saved-items URL from their reader. There is deliberately no hosted sync service, account system, article scraper, or external feed-provider integration.
