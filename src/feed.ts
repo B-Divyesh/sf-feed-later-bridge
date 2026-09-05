@@ -63,7 +63,9 @@ export function parseFeed(xml: string, feedUrl: string): ParsedFeed {
   const rootName = root.localName.toLowerCase();
   const isAtom = rootName === 'feed';
   const channel = isAtom ? root : firstChild(root, ['channel']) ?? root;
-  const nodes = isAtom ? childrenByName(channel, 'entry') : childrenByName(channel, 'item');
+  // RSS 1.0 puts <item> siblings beside <channel> inside rdf:RDF. RSS 2.0
+  // keeps them inside <channel>, so look at the document root for RDF only.
+  const nodes = isAtom ? childrenByName(channel, 'entry') : rootName === 'rdf' ? childrenByName(root, 'item') : childrenByName(channel, 'item');
   if (!isAtom && !['rss', 'rdf'].includes(rootName) && nodes.length === 0) {
     throw new Error('This URL does not look like an RSS or Atom feed.');
   }

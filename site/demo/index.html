@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Try Feed Later Bridge with three sample saved articles. The demo is isolated from your extension data." />
+    <meta name="theme-color" content="#07111d" />
+    <link rel="canonical" href="https://feed-later-bridge.sociobot.in/demo/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Demo — Feed Later Bridge" />
+    <meta property="og:description" content="Try a local saved-items queue with sample articles." />
+    <meta property="og:image" content="https://feed-later-bridge.sociobot.in/assets/feed-bridge-social.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Demo — Feed Later Bridge</title>
+    <link rel="icon" href="/assets/bridge.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="demo-page">
+    <a class="skip-link" href="#main">Skip to sample queue</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Feed Later Bridge home"><img src="/assets/bridge.svg" width="38" height="38" alt="" /><span><b>Feed Later</b><small>Bridge</small></span></a>
+      <nav aria-label="Primary navigation"><a class="nav-action" href="/demo/" aria-current="page">Try sample</a><a href="/privacy/">Privacy</a></nav>
+    </header>
+    <main id="main" class="demo-main">
+      <section class="demo-intro" aria-labelledby="demo-title">
+        <p class="eyebrow">Sample queue</p>
+        <h1 id="demo-title" tabindex="-1">Try a saved-items queue</h1>
+        <p>See three sample articles with notes and reading status. This demo cannot change your extension data.</p>
+      </section>
+      <section class="demo-sandbox" aria-labelledby="sample-queue-title">
+        <div class="demo-banner" role="status"><span><strong>Demo — sample data, nothing is saved.</strong> Reset restores the original three articles.</span><span class="demo-actions"><button id="reset-demo" type="button">Reset demo</button><a href="#start-real">Start for real</a></span></div>
+        <div class="sample-toolbar"><p><strong id="sample-count">2</strong> waiting</p><label>Search sample queue <input id="sample-search" type="search" placeholder="Search titles or notes" /></label></div>
+        <h2 id="sample-queue-title" class="sr-only">Sample saved-items queue</h2>
+        <div id="sample-list" class="sample-list" aria-live="polite"></div>
+        <div class="sample-export"><p>Sample export shows the open files the extension creates.</p><div><button data-export="markdown" type="button">Preview Markdown</button><button data-export="json" type="button">Preview JSON</button></div></div>
+        <pre id="sample-output" aria-live="polite" hidden></pre>
+      </section>
+      <section class="start-real" id="start-real" aria-labelledby="start-real-title">
+        <p class="eyebrow">Use your own feed</p>
+        <h2 id="start-real-title">Install the Chrome extension</h2>
+        <p>Downloads open locally after you load the extension in Chrome.</p>
+        <a class="button primary" href="/downloads/feed-later-bridge-chrome.zip" download>Download for Chrome <span aria-hidden="true">↓</span></a>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <a class="brand" href="/"><img src="/assets/bridge.svg" width="34" height="34" alt="" /><span><b>Feed Later</b><small>Bridge</small></span></a>
+      <p>Import saved feeds into a local queue and export open files.</p>
+      <nav aria-label="Footer navigation"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-feed-later-bridge" rel="noopener noreferrer">Source (opens GitHub)</a></nav>
+      <small>Built by Param Factory · v1.1.0 · Original generated illustration</small>
+    </footer>
+    <script type="module" src="/src/demo.ts"></script>
+  </body>
+</html>

@@ -1,70 +1,44 @@
 # Feed Later Bridge
 
-Feed Later Bridge is a local-first Chrome extension for RSS readers whose “save for later” feed should become a small, finishable queue—not another proprietary reading service.
+Feed Later Bridge imports a saved RSS, Atom, or RSS 1.0 feed into a local browser queue. It is for RSS readers who want notes, completion status, and open exports without a hosted read-later account.
 
-Paste a saved-items RSS or Atom URL, import it, annotate and finish entries, then export the full queue as Markdown, OPML, or JSON. There is no account, sync backend, analytics, article scraping, or recommendation engine.
+The extension stores queue metadata in browser extension storage. It imports feed metadata and links only; it does not fetch article pages. Export the full queue as Markdown, OPML, or JSON.
 
-Live product site: <https://feed-later-bridge.sociobot.in>
+Try the isolated sample at <https://feed-later-bridge.sociobot.in/demo/>. The sample queue uses a `demo:` local-storage key and cannot change extension data. In the extension, choose **Try sample data** to load the same kind of isolated queue.
 
-## How it works
-
-- The extension requests access only to the origin of the feed URL the user submits.
-- Feed requests omit credentials, reject redirects, time out after 15 seconds, and accept up to 5 MB / 1,000 entries.
-- Imported HTML is converted to inert text. Only `http` and `https` article links survive parsing.
-- Tracking query parameters and URL fragments are removed before deduplication.
-- Feed metadata, completion state, and notes live in `browser.storage.local`.
-- Exports are created locally with browser Blob downloads.
-
-The public site is explanatory only; the extension performs the cross-origin feed import. A harmless [`sample-feed.xml`](site/public/sample-feed.xml) is included for automated integration testing and manual smoke tests.
-
-## Develop
+## Run
 
 Requirements: Node.js 20+ and npm.
 
 ```bash
-npm install
-npm run dev          # WXT extension development mode
-npm run dev:site     # landing site at localhost
+npm ci
+npm run dev          # Extension development mode
+npm run dev:site     # Landing site at localhost
 ```
 
-For Chrome, open `chrome://extensions`, enable Developer mode, choose **Load unpacked**, and select `.output/chrome-mv3` after running `npm run build:extension`.
+For Chrome, run `npm run build:extension`, open `chrome://extensions`, enable Developer mode, then load `.output/chrome-mv3` unpacked.
 
 ## Test and build
 
 ```bash
-npm test             # RSS/Atom parsing, deduplication, and all export formats
-npm run test:e2e     # extension workflow, axe checks, desktop + 390px site paths
+npm test             # Unit checks, including RSS 1.0 parsing
+npm run test:e2e     # Browser, extension, demo, accessibility, and responsive checks
+npm run test:claims  # Every public claim from .factory/claims.json
 npm run check        # TypeScript, unit tests, and production build
-npm run build        # required factory build command
+npm run build        # Creates the extension, ZIP, and dist/site/
 ```
 
-`npm run build` produces:
+The browser suite expects Playwright Chromium 1.58.2. Outside the factory image, install it once with `npx playwright install chromium`.
 
-- `.output/chrome-mv3/` — unpacked MV3 extension
-- `dist/site/downloads/feed-later-bridge-chrome.zip` — packaged extension
-- `dist/site/index.html` — static deployment root, including `/privacy/` and `/terms/`
+## Demo and privacy
 
-The e2e suite expects Playwright 1.58.2 Chromium. To provision it outside the factory environment, run `npx playwright install chromium` once.
+`.factory/demo.md` describes the sample data, reset behavior, and isolated storage keys. `.factory/claims.json` lists every retained public product claim and its outcome-based test.
 
-## Project map
-
-- `entrypoints/` — WXT popup, options dashboard, and MV3 service worker
-- `src/feed.ts` — bounded RSS/Atom parsing and canonical deduplication
-- `src/export.ts` — Markdown, OPML, and JSON serializers
-- `site/` — Vite static product and legal pages
-- `tests/` — Vitest unit tests and Playwright browser tests
-- `.factory/design.md` — visual system and original image provenance
-- `.factory/handoff.md` — verification record and known gaps
-
-## Privacy and security
-
-No runtime asset or script is loaded from a third party. The website sets a restrictive content security policy through `_headers`. The extension has no server component and does not send user data to the project. Private feed URLs are credentials: do not paste them into public bug reports.
-
-See [Privacy](site/privacy/index.html) and [Terms](site/terms/index.html).
+The static site has no analytics, cookies, third-party fonts, or third-party runtime assets. Feed requests omit browser credentials.
 
 ## Deploy
 
-Run `npm ci && npm run build`, then publish exactly `dist/site/` as the static site. Infrastructure, DNS, extension-store submission, and billing are intentionally outside this repository.
+Run `npm ci && npm run build`, then publish `dist/site/` as the static site. `staticwebapp.config.json` in that output configures headers, cache policies, and the designed 404 response. Deployment infrastructure and extension-store submission are outside this repository.
 
 ## License
 

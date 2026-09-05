@@ -26,6 +26,17 @@ describe('feed parsing', () => {
     expect(feed.items[0]?.author).toBe('Lin');
   });
 
+  it('@claim:import-rss-atom-rdf parses standard RSS 1.0 sibling items', () => {
+    const rdf = `<?xml version="1.0"?><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><channel rdf:about="https://reader.example/"><title>Saved RDF</title></channel><item rdf:about="https://example.com/rdf-item"><title>RSS 1.0 item</title><link>https://example.com/rdf-item</link><dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2026-08-24T12:00:00Z</dc:date></item></rdf:RDF>`;
+    const atom = `<feed xmlns="http://www.w3.org/2005/Atom"><title>Saved Atom</title><entry><title>Atom item</title><link href="https://example.com/atom-item" /></entry></feed>`;
+    expect(parseFeed(rss, 'https://reader.example/saved.xml').items).toHaveLength(1);
+    expect(parseFeed(atom, 'https://reader.example/saved.atom').items[0]).toMatchObject({ title: 'Atom item', url: 'https://example.com/atom-item' });
+    const feed = parseFeed(rdf, 'https://reader.example/saved.rdf');
+    expect(feed.title).toBe('Saved RDF');
+    expect(feed.items).toHaveLength(1);
+    expect(feed.items[0]).toMatchObject({ title: 'RSS 1.0 item', url: 'https://example.com/rdf-item' });
+  });
+
   it('reports malformed XML and unsupported protocols', () => {
     expect(() => parseFeed('<rss><channel>', 'https://example.com')).toThrow(/valid RSS or Atom/);
     expect(canonicalUrl('file:///etc/passwd')).toBeNull();

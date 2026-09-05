@@ -4,7 +4,7 @@ export default defineConfig({
   manifest: {
     name: 'Feed Later Bridge',
     description: 'Bring a saved-items RSS or Atom feed into a private, exportable reading queue.',
-    version: '1.0.0',
+    version: '1.1.0',
     permissions: ['storage'],
     optional_host_permissions: ['http://*/*', 'https://*/*'],
     action: { default_title: 'Feed Later Bridge' },

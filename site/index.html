@@ -3,95 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Turn an RSS or Atom saved-items feed into a private, finishable, exportable reading queue. No account and no new silo." />
+    <meta name="description" content="Import saved RSS and Atom feeds into a local queue. Add notes, finish items, and export open files without an account." />
     <meta name="theme-color" content="#07111d" />
-    <meta property="og:title" content="Feed Later Bridge" />
-    <meta property="og:description" content="Your saved feed in. An open queue out." />
-    <title>Feed Later Bridge — your saved feed, without another silo</title>
+    <link rel="canonical" href="https://feed-later-bridge.sociobot.in/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Feed Later Bridge — import saved feeds locally" />
+    <meta property="og:description" content="Import saved RSS and Atom feeds into a local queue, then export open files." />
+    <meta property="og:image" content="https://feed-later-bridge.sociobot.in/assets/feed-bridge-social.jpg" />
+    <meta property="og:url" content="https://feed-later-bridge.sociobot.in/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Feed Later Bridge — import saved feeds locally" />
+    <meta name="twitter:description" content="Import saved RSS and Atom feeds into a local queue, then export open files." />
+    <meta name="twitter:image" content="https://feed-later-bridge.sociobot.in/assets/feed-bridge-social.jpg" />
+    <title>Feed Later Bridge — import saved feeds locally</title>
     <link rel="icon" href="/assets/bridge.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Feed Later Bridge"><img src="/assets/bridge.svg" width="38" height="38" alt="" /><span><b>Feed Later</b><small>Bridge</small></span></a>
-      <nav aria-label="Primary navigation"><a href="#how">How it works</a><a href="#formats">Open formats</a><a class="nav-action" href="/downloads/feed-later-bridge-chrome.zip" download>Download</a></nav>
+      <a class="brand" href="/" aria-label="Feed Later Bridge home"><img src="/assets/bridge.svg" width="38" height="38" alt="" /><span><b>Feed Later</b><small>Bridge</small></span></a>
+      <nav aria-label="Primary navigation"><a class="nav-action" href="/demo/">Try sample</a><a href="/privacy/">Privacy</a></nav>
     </header>
     <main id="main">
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow"><span></span> A private relay for saved reading</p>
-          <h1>Your saved feed,<br /><em>without another silo.</em></h1>
-          <p class="lede">Bring an RSS or Atom saved-items feed into one calm, local queue. Finish articles, leave notes, and take everything back out in open formats.</p>
+          <p class="eyebrow"><span></span> Saved-items feed tool</p>
+          <h1>Import saved feeds into a local queue</h1>
+          <p class="lede">For RSS readers who save articles and want one small queue they control.</p>
           <div class="hero-actions">
-            <a class="button primary" href="/downloads/feed-later-bridge-chrome.zip" download>Download for Chrome <span aria-hidden="true">↓</span></a>
-            <a class="text-link" href="#install">See install steps <span aria-hidden="true">→</span></a>
+            <a class="button primary" href="/demo/">Try it with sample data <span aria-hidden="true">→</span></a>
+            <span class="action-note">Loads three example articles in a separate demo.</span>
           </div>
-          <ul class="trust-list" aria-label="Product guarantees">
-            <li>No account</li><li>No tracking</li><li>Local by default</li>
+          <ul class="trust-list" aria-label="Product facts">
+            <li>Free to use</li><li>No account</li><li>Saved queue works offline</li>
           </ul>
         </div>
         <figure class="hero-visual">
           <div class="figure-label source-label"><span></span> Saved feed</div>
           <picture>
             <source media="(max-width: 700px)" srcset="/assets/feed-bridge-hero-768.webp" />
-            <img src="/assets/feed-bridge-hero.webp" width="1280" height="853" alt="A luminous glass bridge carrying article tiles from a feed beacon to an orderly queue" fetchpriority="high" decoding="async" />
+            <img src="/assets/feed-bridge-hero.webp" width="1280" height="853" alt="An illustration of article tiles moving from a feed source to a small queue" fetchpriority="high" decoding="async" />
           </picture>
-          <div class="figure-label queue-label"><span></span> Your queue</div>
-          <figcaption>One transparent route in. Three open routes out.</figcaption>
+          <div class="figure-label queue-label"><span></span> Local queue</div>
         </figure>
       </section>
 
       <section class="proof-strip" aria-label="Product summary">
-        <div><strong>RSS + Atom</strong><span>Reads the open feed you already have</span></div>
-        <div><strong>On-device</strong><span>Stores links, status, and notes locally</span></div>
-        <div><strong>OPML · MD · JSON</strong><span>Exports without a proprietary format</span></div>
+        <div><strong>RSS, Atom, RSS 1.0</strong><span>Import saved-items feeds you provide</span></div>
+        <div><strong>Browser storage</strong><span>Keep notes and progress on this device</span></div>
+        <div><strong>Markdown, OPML, JSON</strong><span>Export the full queue as open files</span></div>
       </section>
 
       <section class="workflow" id="how">
-        <div class="section-heading"><p class="eyebrow">A bridge, not a destination</p><h2>A finite route through your reading.</h2><p>Feed Later Bridge handles the handoff. The article still belongs to its publisher, and the queue still belongs to you.</p></div>
+        <div class="section-heading"><p class="eyebrow">How it works</p><h2>Use your saved-items feed in three steps</h2><p>Feed Later Bridge keeps a small queue. It imports links and metadata; it does not fetch article pages.</p></div>
         <ol class="steps">
-          <li><span class="step-number">01</span><div class="step-line" aria-hidden="true"></div><h3>Connect the feed</h3><p>Paste the private or public RSS/Atom URL your reader gives you. The extension asks only for that origin.</p></li>
-          <li><span class="step-number">02</span><div class="step-line" aria-hidden="true"></div><h3>Work the queue</h3><p>Duplicate links merge automatically. Search, annotate, and mark items finished without creating an account.</p></li>
-          <li><span class="step-number">03</span><div class="step-line" aria-hidden="true"></div><h3>Take it back out</h3><p>Export the complete queue as readable Markdown, interoperable OPML, or structured JSON at any time.</p></li>
+          <li><span class="step-number">01</span><div class="step-line" aria-hidden="true"></div><h3>Add a feed URL</h3><p>Paste the RSS or Atom saved-items URL from your reader.</p></li>
+          <li><span class="step-number">02</span><div class="step-line" aria-hidden="true"></div><h3>Manage your queue</h3><p>Search items, add notes, finish reading, or undo a removal.</p></li>
+          <li><span class="step-number">03</span><div class="step-line" aria-hidden="true"></div><h3>Export your queue</h3><p>Download Markdown, OPML, or JSON whenever you need it.</p></li>
         </ol>
       </section>
 
       <section class="queue-demo" aria-labelledby="queue-demo-title">
         <div class="demo-chrome">
-          <div class="demo-top"><span></span><span></span><span></span><small>LOCAL QUEUE / 3 WAITING</small></div>
+          <div class="demo-top"><span></span><span></span><span></span><small>SAMPLE QUEUE / 2 WAITING</small></div>
           <div class="demo-body">
-            <div class="demo-source"><p class="eyebrow">01 / Source</p><strong>Saved in Miniflux</strong><small>Imported just now</small><button type="button" disabled>Up to date <span>✓</span></button></div>
-            <div class="demo-list"><div class="demo-list-head"><div><p class="eyebrow">02 / Queue</p><h2 id="queue-demo-title">A small, finishable list.</h2></div><b>03</b></div>
-              <article><span class="check">✓</span><div><small>THE MARGINALIAN · AUG 24</small><h3>How attention becomes a form of care</h3><p>Note: revisit the passage on deliberate noticing.</p></div></article>
-              <article><span class="check empty"></span><div><small>LOW-TECH MAGAZINE · AUG 22</small><h3>A solar-powered website for a slower web</h3></div></article>
-              <article><span class="check empty"></span><div><small>PERSONAL FEED · AUG 19</small><h3>Making links durable across tools</h3></div></article>
+            <div class="demo-source"><p class="eyebrow">Sample source</p><strong>Saved in Miniflux</strong><small>Three sample entries</small><a class="button secondary" href="/demo/">Open sample queue <span aria-hidden="true">→</span></a></div>
+            <div class="demo-list"><div class="demo-list-head"><div><p class="eyebrow">Sample output</p><h2 id="queue-demo-title">Saved articles with notes and status</h2></div><b>03</b></div>
+              <article><span class="check">✓</span><div><small>SAVED IN MINIFLUX · AUG 24</small><h3>How small link archives outlast services</h3><p>Note: compare the export choices before moving old saves.</p></div></article>
+              <article><span class="check empty"></span><div><small>SAVED IN MINIFLUX · AUG 22</small><h3>A solar-powered website for a slower web</h3></div></article>
+              <article><span class="check empty"></span><div><small>SAVED IN MINIFLUX · AUG 19</small><h3>Making links durable across tools</h3></div></article>
             </div>
           </div>
         </div>
-        <p class="demo-caption">The extension stays compact on purpose: source, queue, export. No recommendations and no endless scroll.</p>
       </section>
 
       <section class="formats" id="formats">
-        <div><p class="eyebrow">Open on both sides</p><h2>Nothing is trapped here.</h2></div>
+        <div><p class="eyebrow">Export formats</p><h2>Choose the file you need</h2></div>
         <div class="format-grid">
-          <article><span>.md</span><h3>Markdown</h3><p>A human-readable checklist with titles, links, dates, sources, and notes.</p></article>
-          <article><span>.opml</span><h3>OPML</h3><p>A portable outline that other readers and link tools can understand.</p></article>
-          <article><span>{ }</span><h3>JSON</h3><p>A complete structured backup for scripts, migration, or safekeeping.</p></article>
+          <article><span>.md</span><h3>Markdown</h3><p>A checklist with titles, links, dates, sources, and notes.</p></article>
+          <article><span>.opml</span><h3>OPML</h3><p>An outline file for readers and link tools.</p></article>
+          <article><span>{ }</span><h3>JSON</h3><p>A structured backup for scripts or a future move.</p></article>
         </div>
       </section>
 
       <section class="install" id="install">
-        <div><p class="eyebrow">Install in two minutes</p><h2>Keep the bridge in your browser.</h2><p>Version 1 ships as a reviewable Chrome-compatible package. Firefox packaging is a planned next step.</p></div>
-        <ol><li><span>1</span><p><a href="/downloads/feed-later-bridge-chrome.zip" download>Download the extension zip</a> and unpack it.</p></li><li><span>2</span><p>Open <code>chrome://extensions</code> and switch on Developer mode.</p></li><li><span>3</span><p>Choose “Load unpacked” and select the extracted folder.</p></li></ol>
-        <a class="button primary" href="/downloads/feed-later-bridge-chrome.zip" download>Download Feed Later Bridge <span aria-hidden="true">↓</span></a>
+        <div><p class="eyebrow">Install the extension</p><h2>Import your own saved-items feed</h2><p>Download the Chrome-compatible package, then load it from Chrome’s extensions page.</p></div>
+        <ol><li><span>1</span><p><a href="/downloads/feed-later-bridge-chrome.zip" download>Download the extension zip</a> and unpack it.</p></li><li><span>2</span><p>Open <code>chrome://extensions</code> and turn on Developer mode.</p></li><li><span>3</span><p>Choose “Load unpacked” and select the extracted folder.</p></li></ol>
+        <a class="button primary" href="/downloads/feed-later-bridge-chrome.zip" download>Download for Chrome <span aria-hidden="true">↓</span></a>
       </section>
     </main>
     <footer class="site-footer">
       <a class="brand" href="/"><img src="/assets/bridge.svg" width="34" height="34" alt="" /><span><b>Feed Later</b><small>Bridge</small></span></a>
-      <p>Local-first, open-format software for people who read feeds.</p>
-      <nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-feed-later-bridge" rel="noopener noreferrer">Source</a></nav>
-      <small>Original generated landscape · No analytics or third-party runtime assets</small>
+      <p>Import saved feeds into a local queue and export open files.</p>
+      <nav aria-label="Footer navigation"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-feed-later-bridge" rel="noopener noreferrer">Source (opens GitHub)</a></nav>
+      <small>Built by Param Factory · v1.1.0 · Original generated illustration</small>
     </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>

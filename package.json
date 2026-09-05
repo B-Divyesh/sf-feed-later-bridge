@@ -1,6 +1,6 @@
 {
   "name": "feed-later-bridge",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,6 +13,7 @@
     "build": "npm run build:extension && npm run package:extension && npm run build:site",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:claims": "npm test -- -t @claim:import-rss-atom-rdf && npm run test:e2e -- --grep @claim:",
     "check": "tsc --noEmit && npm test && npm run build"
   },
   "devDependencies": {
