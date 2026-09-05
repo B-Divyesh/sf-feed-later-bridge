@@ -184,4 +184,38 @@ test.describe('extension workflow', () => {
       await rm(profile, { recursive: true, force: true });
     }
   });
+
+  test('keyboard controls operate the demo queue and retain a visible focus target', async () => {
+    const page = await optionsPage('?demo=1');
+    await storageCall(page, 'clear');
+    await page.reload();
+    const status = page.getByRole('button', { name: /Mark .* finished/ }).first();
+    await status.focus();
+    await expect(status).toBeFocused();
+    await page.keyboard.press('Space');
+    await expect(page.getByText('Moved to Finished.')).toBeVisible();
+    const all = page.getByRole('button', { name: 'All', exact: true });
+    await all.focus();
+    await page.keyboard.press('Enter');
+    await expect(all).toHaveAttribute('aria-pressed', 'true');
+    await page.close();
+  });
+
+  test('extension controls meet the 44px touch target baseline', async () => {
+    const page = await optionsPage('?demo=1');
+    await storageCall(page, 'clear');
+    await page.reload();
+    const undersized = await page.locator('a, button, input, select, textarea, summary').evaluateAll((elements) => elements
+      .filter((element) => {
+        const style = getComputedStyle(element);
+        return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
+      })
+      .map((element) => {
+        const box = element.getBoundingClientRect();
+        return { text: (element.textContent ?? '').trim(), width: box.width, height: box.height };
+      })
+      .filter((target) => target.width < 44 || target.height < 44));
+    expect(undersized).toEqual([]);
+    await page.close();
+  });
 });

@@ -32,7 +32,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .brand b { font-family: "Arial Narrow", "Aptos Narrow", sans-serif; font-size: 17px; letter-spacing: .02em; }
 .brand small { margin-top: 4px; color: var(--current); font: 700 10px/1 "Arial Narrow", sans-serif; letter-spacing: .18em; text-transform: uppercase; }
 .site-header nav, .site-footer nav { display: flex; align-items: center; gap: 28px; }
-.site-header nav a, .site-footer nav a { min-height: 44px; display: inline-flex; align-items: center; color: var(--muted); text-decoration: none; font-size: 14px; }
+.site-header nav a, .site-footer nav a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; color: var(--muted); text-decoration: none; font-size: 14px; }
 .site-header nav a:not(.nav-action), .site-footer nav a, .install li a { text-decoration: underline; text-underline-offset: 4px; }
 .site-header nav a:hover, .site-footer nav a:hover { color: var(--current); }
 .site-header .nav-action { padding: 0 17px; border: 1px solid var(--edge); border-radius: 8px; color: var(--ink); }

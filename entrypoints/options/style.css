@@ -23,7 +23,7 @@ html { min-width: 320px; background: var(--ground); }
 body { margin: 0; min-height: 100vh; color: var(--ink); background: radial-gradient(circle at 75% 18%, rgb(33 112 130 / 18%), transparent 35%), linear-gradient(135deg, var(--ground), var(--ground-soft)); font-size: 16px; line-height: 1.5; }
 button, input, select, textarea { font: inherit; }
 button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
-button { min-height: 44px; cursor: pointer; }
+button { min-width: 44px; min-height: 44px; cursor: pointer; }
 button:disabled { cursor: wait; opacity: .68; }
 :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
 .skip-link { position: fixed; z-index: 20; top: 8px; left: 8px; padding: 10px 14px; color: #07111d; background: var(--signal); transform: translateY(-150%); }
@@ -98,7 +98,7 @@ select { padding: 8px 32px 8px 10px; }
 .item-meta { display: flex; gap: 10px; color: var(--muted); font: 700 11px/1.2 "Arial Narrow", sans-serif; letter-spacing: .09em; text-transform: uppercase; }
 .item-meta span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .item-meta time { white-space: nowrap; }
-.item-content > a { margin-top: 8px; display: inline-block; color: var(--ink); font-size: 19px; font-weight: 700; line-height: 1.32; text-decoration: none; }
+.item-content > a { min-height: 44px; margin-top: 4px; display: flex; align-items: center; color: var(--ink); font-size: 19px; font-weight: 700; line-height: 1.32; text-decoration: none; }
 .item-content > a:hover { color: var(--current); text-decoration: underline; text-underline-offset: 3px; }
 .byline { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
 .note-preview { margin: 10px 0 0; padding-left: 11px; border-left: 2px solid var(--signal); color: var(--muted); font-size: 14px; }

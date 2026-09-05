@@ -25,7 +25,7 @@ app.innerHTML = `
     </a>
     <div class="privacy-chip"><span aria-hidden="true"></span> Local only</div>
   </header>
-  <main id="main" class="workbench">
+  <main id="main" class="workbench" tabindex="-1">
     <aside class="source-panel" aria-labelledby="source-title">
       <p class="eyebrow">01 / Source</p>
       <p id="source-title" class="source-title">Connect your saved feed</p>

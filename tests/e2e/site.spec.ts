@@ -89,3 +89,35 @@ test('mobile layout keeps the sample, navigation, and legal routes reachable', a
   const viewport = page.viewportSize();
   expect(bodyWidth).toBeLessThanOrEqual(viewport!.width);
 });
+
+test('keyboard and reduced-motion paths keep the first actions usable', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  await page.goto('/');
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Skip to main content' })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#main')).toBeFocused();
+  expect(await page.locator('html').evaluate((element) => getComputedStyle(element).scrollBehavior)).toBe('auto');
+  await page.getByRole('link', { name: 'Try it with sample data' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/demo\/$/);
+  await context.close();
+});
+
+test('site interactive controls meet the 44px touch target baseline', async ({ page }) => {
+  for (const route of ['/', '/demo/', '/privacy/', '/terms/']) {
+    await page.goto(route);
+    const undersized = await page.locator('a, button, input, select, textarea, summary').evaluateAll((elements) => elements
+      .filter((element) => {
+        const style = getComputedStyle(element);
+        return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
+      })
+      .map((element) => {
+        const box = element.getBoundingClientRect();
+        return { text: (element.textContent ?? '').trim(), width: box.width, height: box.height };
+      })
+      .filter((target) => target.width < 44 || target.height < 44));
+    expect(undersized).toEqual([]);
+  }
+});
